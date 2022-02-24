@@ -1,4 +1,5 @@
-const {techProblems} = require('./engineers')
+let {techProblems} = require('./engineers')
+
 
 // setUpFilm
 // executor function
@@ -9,13 +10,13 @@ const setUpFilm = (resolve, reject) => {
          throw new Error('having technical problems')
       }
       techProblems--
-
-      // se up the film
+      // set up the film
       setTimeout(() => {
-         const film = 'Harry Potter and the Chamber of Secrets'
+         const films = ['Harry Potter and the Chamber of Secrets', 'Pretty Woman', 'The Wizard of Ox', 'The Notebook', 'The Godfather']
          // resolve with the film
-         resolve(film)
+         resolve(films)
       }, 5000)
+      
 
    } catch (e) {
       //reject with an excuse

@@ -1,25 +1,26 @@
 const { buyTickets } = require("./ticketOffice");
 const { eatPopcorns, buyingPopcorns, complain } = require("./customerActions");
-const { setUpFilm } = require("./projectionistRoom");
 
 let queue = ['Ikena', 'Marco', 'Isabel', 'Mike', 'Jesse']
 
 
 
-async function goToTicketOffice(cust) {
-   console.log(`${cust} approaches the counter`)
+async function goToTicketOffice(cust, filmReference) {
+   console.log(`${cust} approaches the tickets office of the Vintage Films Cinema`)
    try{
-      const film = await setUpFilm()
-      console.log("The film is starting now")
-      eatPopcorns(cust,film)
+      const films = await buyTickets()
+      console.log(`The film ${films[filmReference]} is starting now`)
+      eatPopcorns(cust,films[filmReference])
    } catch (err) {
       complain(cust,err)
    }
 }
 
+let filmCounter = 0;
 
 
 for ( let cust of queue){
-   buyTickets(cust)
-   buyingPopcorns(cust, 'using bathroom')
+   goToTicketOffice(cust,filmCounter)
+   buyingPopcorns(cust)
+   filmCounter++
 }
